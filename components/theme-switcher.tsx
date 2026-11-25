@@ -30,13 +30,13 @@ function ThemeSwitcher() {
 
   return (
     <ToggleGroup
-      type="single"
       spacing={1}
       aria-label="테마 선택"
-      value={mounted ? theme : ""}
+      value={mounted && theme ? [theme] : []}
       onValueChange={(value) => {
-        // Radix clears the value when the active item is clicked again.
-        if (value) setTheme(value)
+        // Pressing the active item again empties the value; keep the theme.
+        const [next] = value
+        if (next) setTheme(next)
       }}
       className="rounded-full border p-1"
     >
